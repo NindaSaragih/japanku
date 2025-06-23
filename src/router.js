@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from './views/Home.vue'
 import AnimeList from './views/AnimeList.vue'
 import JadwalRilis from './views/JadwalRilis.vue'
-import OnGoing from './views/OnGoing.vue'
+import OnGoing from './views/BelumTayang.vue'
 import GenreList from './views/GenreList.vue'
 
 const routes = [
