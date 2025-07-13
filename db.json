@@ -1,0 +1,19 @@
+{
+  "anime": [
+    {
+      "id": 1,
+      "judul": "Naruto",
+      "genre": "Action",
+      "sinopsis": "Seorang ninja yang bercita-cita menjadi Hokage.",
+      "gambar": ""
+    },
+    {
+      "id": 2,
+      "judul": "Your Name",
+      "genre": "Romance",
+      "sinopsis": "Pertemuan ajaib antara dua remaja yang saling bertukar tubuh.",
+      "gambar": ""
+    }
+  ],
+  "users": []
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Selamat datang di Japanku</h1>
+    <h1>Selamat datang di Japanku, {{ user.nama }}!</h1>
     <p>Temukan informasi anime favoritmu di sini!</p>
 
     <div class="thumbnail-container">
@@ -14,7 +14,7 @@
         alt="Thumbnail Anime 2"
         @click="openVideoModal('https://www.youtube.com/embed/-6EHMH1BqAM')" class="video-thumbnail"
       />
-      </div>
+    </div>
 
     <div v-if="showVideoModal" class="video-modal-overlay" @click.self="closeVideoModal">
       <div class="video-modal-content">
@@ -25,43 +25,38 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         ></iframe>
-        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script setup>
+import { ref } from 'vue'
+import { useUserStore } from '@/store/userStore'
 
-export default {
-  name: 'Home',
-  setup() {
-    const showVideoModal = ref(false);
-    const currentVideoUrl = ref('');
-
-    function openVideoModal(videoUrl) {
-      // Pastikan URL YouTube adalah format embed yang benar
-      // Contoh: dari https://www.youtube.com/watch?v=dQw4w9WgXcQ menjadi https://www.youtube.com/embed/video_id
-      if (videoUrl.includes('watch?v=')) {
-        currentVideoUrl.value = videoUrl.replace('watch?v=', 'embed/');
-      } else {
-        currentVideoUrl.value = videoUrl;
-      }
-      showVideoModal.value = true;
-    }
-
-    function closeVideoModal() {
-      showVideoModal.value = false;
-      currentVideoUrl.value = ''; // Menghentikan pemutaran video saat modal ditutup
-    }
-
-    return {
-      showVideoModal,
-      currentVideoUrl,
-      openVideoModal,
-      closeVideoModal
-    };
+// Deklarasi props
+const props = defineProps({
+  searchQuery: {
+    type: String,
+    default: ''
   }
+})
+
+const user = useUserStore()
+
+const showVideoModal = ref(false)
+const currentVideoUrl = ref('')
+
+function openVideoModal(videoUrl) {
+  currentVideoUrl.value = videoUrl.includes('watch?v=')
+    ? videoUrl.replace('watch?v=', 'embed/')
+    : videoUrl
+  showVideoModal.value = true
+}
+
+function closeVideoModal() {
+  showVideoModal.value = false
+  currentVideoUrl.value = ''
 }
 </script>
 
@@ -70,10 +65,9 @@ export default {
   padding: 20px;
   background-color: #e3f2fd;
   min-height: 100vh;
-  text-align: center; /* Pusatkan konten utama halaman */
+  text-align: center;
 }
 
-/* Styling untuk thumbnail video */
 .thumbnail-container {
   display: flex;
   justify-content: center;
@@ -97,7 +91,6 @@ export default {
   border-color: #42b983;
 }
 
-/* Modal Styling */
 .video-modal-overlay {
   position: fixed;
   top: 0;
@@ -106,8 +99,8 @@ export default {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  justify-content: center; /* Memusatkan secara horizontal */
-  align-items: center;   /* Memusatkan secara vertikal */
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
 }
 
@@ -116,25 +109,16 @@ export default {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Ubah ukuran maksimum untuk video yang lebih besar */
-  max-width: 80vw;   /* Maksimum 80% dari lebar viewport */
-  max-height: 80vh;  /* Maksimum 80% dari tinggi viewport */
-  width: auto;       /* Izinkan lebar menyesuaikan konten */
-  height: auto;      /* Izinkan tinggi menyesuaikan konten */
-  overflow: hidden;
-  display: flex; /* Untuk memastikan iframe/video mengisi ruang */
+  max-width: 80vw;
+  max-height: 80vh;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.video-modal-content iframe,
-.video-modal-content video {
-  /* Pastikan iframe/video memenuhi ukuran modal content */
+.video-modal-content iframe {
   width: 100%;
-  height: 100%;
-  aspect-ratio: 1080 / 1080; /* Rasio aspek standar untuk video */
-  display: block;
+  aspect-ratio: 1 / 1;
 }
 
 .close-button {
@@ -146,7 +130,6 @@ export default {
   font-size: 24px;
   cursor: pointer;
   color: #333;
-  z-index: 1001;
 }
 
 .close-button:hover {

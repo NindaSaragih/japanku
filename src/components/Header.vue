@@ -1,15 +1,16 @@
 <template>
   <header class="header">
-    <h1>Japanku</h1>
-    <input type="text" v-model="search" placeholder="Search anime..." @input="emitSearch" />
+    <h1 class="title">Japanku</h1>
+    <input
+      type="text"
+      placeholder="Search anime..."
+      class="search-bar"
+      @input="$emit('search', $event.target.value)"
+    />
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const search = ref('')
-const emit = defineEmits(['search'])
-const emitSearch = () => emit('search', search.value)
 </script>
 
 <style scoped>
@@ -17,12 +18,23 @@ const emitSearch = () => emit('search', search.value)
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #b3e5fc;
-  padding: 1rem;
+  background-color: #b3e5fc; /* biru muda */
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #81d4fa;
 }
-input {
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: none;
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #01579b;
+}
+
+.search-bar {
+  padding: 0.5rem 1rem;
+  border: 1px solid #81d4fa;
+  border-radius: 8px;
+  width: 250px;
+  max-width: 100%;
+  font-size: 1rem;
 }
 </style>

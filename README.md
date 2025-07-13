@@ -1,5 +1,29 @@
-# Vue 3 + Vite
+# 🌸 Japanku – Aplikasi Informasi Anime
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Japanku adalah aplikasi web berbasis Vue.js yang menyediakan informasi tentang anime, termasuk daftar anime, jadwal rilis, genre, dan anime yang sedang tayang.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+# 🚀 Fitur Utama
+
+- **Login dengan Validasi Umur**
+  - Hanya pengguna berusia ≥15 tahun yang dapat melanjutkan
+- **Navigasi Lengkap**
+  - Sidebar dengan akses ke semua halaman utama
+  - Header dengan pencarian dan nama aplikasi
+- **Halaman-Halaman**
+  - `Home`: Selamat datang dan rekomendasi
+  - `Anime List`: Daftar semua anime
+  - `Tambah Anime`: Form tambah data anime
+  - `Detail Anime`: Detail berdasarkan ID
+  - `Jadwal Rilis`: Info anime yang akan tayang
+  - `On-Going`: Anime yang sedang tayang
+  - `Genre`: Daftar berdasarkan genre
+
+# 🛠 Teknologi yang Digunakan
+
+- Vue 3
+- Vue Router
+- Pinia (State Management)
+- CSS/Tailwind
+- Vite (untuk build tool)
+
+Selamat menggunakan Japanku! 🌸🇯🇵
